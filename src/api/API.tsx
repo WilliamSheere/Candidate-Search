@@ -1,5 +1,6 @@
 const searchGithub = async () => {
   try {
+    console.log(import.meta.env.VITE_GITHUB_TOKEN);
     const start = Math.floor(Math.random() * 100000000) + 1;
     // console.log(import.meta.env);
     const response = await fetch(

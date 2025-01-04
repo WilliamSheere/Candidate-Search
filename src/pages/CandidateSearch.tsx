@@ -1,8 +1,19 @@
-//import { useState, useEffect } from 'react';
-//import { searchGithub, searchGithubUser } from '../api/API';
+import { useState, useEffect } from "react";
+import { searchGithub, searchGithubUser } from "../api/API";
 
 const CandidateSearch = () => {
-  return <h1>CandidateSearch</h1>;
+	useEffect(() => {
+	searchUser()
+	}, []);
+	async function searchUser() {
+		const userData = await searchGithub();
+    console.log (userData)
+	}
+	return (
+		<>
+			<h1>candidate</h1>
+		</>
+	);
 };
 
 export default CandidateSearch;
