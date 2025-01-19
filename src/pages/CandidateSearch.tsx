@@ -11,6 +11,7 @@ const CandidateSearch = () => {
 		{ id: number; login: string; avatar_url: string }[]
 	>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [displayUsers, setDisplayUsers] = useState(true);
 	useEffect(() => {
 		searchUser();
 	}, []);
@@ -21,12 +22,11 @@ const CandidateSearch = () => {
 		console.log(userData);
 	}
 	function saveUser() {
-		const localStorageUsers: string | null= localStorage.getItem("savedUsers");
+		const localStorageUsers: string | null = localStorage.getItem("savedUsers");
 		let parsedUsers;
 		if (!localStorageUsers) {
 			parsedUsers = [];
-		}
-		else {
+		} else {
 			parsedUsers = JSON.parse(localStorageUsers);
 		}
 
@@ -36,29 +36,42 @@ const CandidateSearch = () => {
 			id: users[currentIndex].id,
 		};
 		// if (localStorageUsers){
-			parsedUsers.push(newUser);
+		parsedUsers.push(newUser);
 		// }
-		localStorage.setItem('savedUsers',JSON.stringify(parsedUsers))
+		localStorage.setItem("savedUsers", JSON.stringify(parsedUsers));
+	}
+	function handleIndex() {
+		if (users.length - 1 === currentIndex) {
+			setDisplayUsers(false);
+		} else {
+			setCurrentIndex(currentIndex + 1);
+		}
 	}
 	return (
 		<>
 			<h1>candidate</h1>
-			<Card user={users[currentIndex]} />
-			<button
-				className="addButton"
-				onClick={() => {
-					saveUser();
-					setCurrentIndex(currentIndex + 1);
-				}}
-			>
-				+
-			</button>
-			<button
-				className="minusButton"
-				onClick={() => setCurrentIndex(currentIndex + 1)}
-			>
-				-
-			</button>
+			{displayUsers ? (
+				<>
+					<Card user={users[currentIndex]} />
+					<button
+						className="addButton"
+						onClick={() => {
+							saveUser();
+							handleIndex();
+						}}
+					>
+						+
+					</button>
+					<button
+						className="minusButton"
+						onClick={() => handleIndex()}
+					>
+						-
+					</button>
+				</>
+			) : (
+				<div>No more potential candidates.</div>
+			)}
 		</>
 	);
 };
