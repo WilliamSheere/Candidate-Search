@@ -26,12 +26,12 @@ const SavedCandidates = () => {
 			) : (
 				savedUsers.map((user) => {
 					return (
-						<div>
+						<div key={user.id}>
 							<div>{user.login}</div>
 							<div>
 								<img src={user.avatar} alt="Avatar" />
 							</div>
-							<div></div>
+							<div><a href={user.htmlurl}>Github Link</a></div>
 						</div>
 					);
 				})

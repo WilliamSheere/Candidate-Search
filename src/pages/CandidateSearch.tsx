@@ -8,7 +8,7 @@ import type { Candidate } from "../interfaces/Candidate.interface";
 const CandidateSearch = () => {
 	//const [currentCandidate, setcurrentCandidate] = useState('')
 	const [users, setUsers] = useState<
-		{ id: number; login: string; avatar_url: string }[]
+		{ id: number; login: string; avatar_url: string; html_url:string }[]
 	>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [displayUsers, setDisplayUsers] = useState(true);
@@ -34,6 +34,7 @@ const CandidateSearch = () => {
 			login: users[currentIndex].login,
 			avatar: users[currentIndex].avatar_url,
 			id: users[currentIndex].id,
+			htmlurl: users[currentIndex].html_url
 		};
 		// if (localStorageUsers){
 		parsedUsers.push(newUser);

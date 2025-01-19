@@ -6,8 +6,7 @@ export interface Candidate {
 	id: number;
 	//location: string;
 	avatar: string;
-	// email: string;
-	//htmlurl: string;
+	//email: string;
+	htmlurl: string;
 	//company: string;
 }
-
